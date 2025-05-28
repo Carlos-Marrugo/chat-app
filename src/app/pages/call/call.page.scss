@@ -1,0 +1,84 @@
+/* Componentes de tarjeta con efecto vidrio y acentos neón */
+ion-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  margin: 12px;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 12px 24px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  }
+}
+
+ion-card-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 18px 20px;
+}
+
+ion-card-title {
+  font-size: 1.4em;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, #00d4ff, #6a11cb);
+    border-radius: 3px;
+  }
+}
+
+ion-card-content {
+  padding: 20px;
+}
+
+/* Botones con efecto neón */
+ion-button {
+  --border-radius: 12px;
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  margin: 8px 0;
+
+  &.success {
+    --background: linear-gradient(135deg, #00b09b, #96c93d);
+    --box-shadow: 0 4px 20px rgba(0, 176, 155, 0.3);
+    --color: #111;
+
+    &:hover {
+      --box-shadow: 0 6px 24px rgba(0, 176, 155, 0.5);
+    }
+  }
+
+  &.danger {
+    --background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    --box-shadow: 0 4px 20px rgba(255, 65, 108, 0.3);
+
+    &:hover {
+      --box-shadow: 0 6px 24px rgba(255, 65, 108, 0.5);
+    }
+  }
+
+  &.ion-activated {
+    transform: scale(0.96);
+  }
+}

@@ -1,0 +1,158 @@
+/* Estructura base del chat */
+.chat-content {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  padding-bottom: 80px;
+  background-attachment: fixed;
+}
+
+/* Contenedor de mensajes */
+.message {
+  display: flex;
+  margin: 10px 16px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.3), transparent);
+  }
+}
+
+/* Mensajes propios (derecha) */
+.message.mine {
+  justify-content: flex-end;
+
+  .bubble {
+    background: linear-gradient(145deg, #8a2be2, #4b0082);
+    color: #fff;
+    border-radius: 20px 4px 20px 20px;
+    box-shadow:
+      0 2px 10px rgba(138, 43, 226, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    border-left: 2px solid #9370db;
+
+    &::after {
+      content: '◀';
+      position: absolute;
+      right: -10px;
+      top: 12px;
+      color: #8a2be2;
+      font-size: 16px;
+      text-shadow: 2px 0 3px rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+/* Mensajes recibidos (izquierda) */
+.message:not(.mine) {
+  justify-content: flex-start;
+
+  .bubble {
+    background: linear-gradient(145deg, #1e1e2e, #2a2a3a);
+    color: #e0e0e0;
+    border-radius: 4px 20px 20px 20px;
+    box-shadow:
+      0 2px 10px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    border-right: 2px solid #483d8b;
+
+    &::after {
+      content: '▶';
+      position: absolute;
+      left: -10px;
+      top: 12px;
+      color: #483d8b;
+      font-size: 16px;
+      text-shadow: -2px 0 3px rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+/* Burbuja de mensaje */
+.bubble {
+  max-width: 75%;
+  padding: 14px 18px;
+  font-size: 15px;
+  line-height: 1.5;
+  position: relative;
+  word-break: break-word;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+
+  .timestamp {
+    display: block;
+    font-size: 11px;
+    opacity: 0.7;
+    margin-top: 6px;
+    text-align: right;
+  }
+}
+
+/* Mensajes de audio */
+.audio-msg {
+  background: linear-gradient(145deg, #1e1e2e, #2a2a3a);
+  padding: 12px 16px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 75%;
+  min-width: 160px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(138, 43, 226, 0.3);
+
+  .icon {
+    font-size: 24px;
+    color: #8a2be2;
+    filter: drop-shadow(0 0 4px rgba(138, 43, 226, 0.7));
+  }
+
+  .wave {
+    flex: 1;
+    height: 8px;
+    background: linear-gradient(90deg, #4b0082, #9370db);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent);
+      animation: waveAnimation 2s infinite linear;
+    }
+  }
+}
+
+/* Media messages */
+.media-msg {
+  img, video {
+    border-radius: 12px;
+    max-width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+    border: 2px solid #8a2be2;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+/* Animación de onda de audio */
+@keyframes waveAnimation {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
